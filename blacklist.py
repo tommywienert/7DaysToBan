@@ -14,6 +14,10 @@ def load_config():
         print("Paths missing, enter the paths (you only have to do this once)")
         log_dir = input("Enter the directory of the log files (usually <7daysServer directory>/7DaysToDieServer_Data): ")
         server_admin_file = input("Enter the directory of the serveradmin.xml file (usually <7Days UserDataFolder>/Saves): ")
+
+        # Use os.path.join to concatenate paths with the correct separator
+        log_dir = os.path.join(log_dir, '7DaysToDieServer_Data')
+        server_admin_file = os.path.join(server_admin_file, 'Saves', 'serveradmin.xml')
         config = {'log_dir': log_dir, 'server_admin_file': server_admin_file + '/serveradmin.xml'}
         with open(config_file, 'w') as f:
             json.dump(config, f, indent=4)
